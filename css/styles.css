@@ -207,7 +207,7 @@
     .founder-image-accent{position:absolute;top:-12px;left:-12px;width:100%;height:100%;border:1px solid rgba(184,112,74,.25);pointer-events:none;transition:transform .8s cubic-bezier(.16,1,.3,1)}
     .founder-image-wrap:hover .founder-image-accent{transform:translate(4px,4px)}
     #founder .section-eyebrow{color:var(--terracotta-light)}
-    #founder .section-title{color:var(--ivory)}
+    #founder .section-title{color:var(--ink)}
     #founder .section-title em{color:var(--terracotta-light)}
     .founder-text{font-size:15px;font-weight:200;line-height:1.9;color:rgba(250,247,243,.7);margin-bottom:20px}
     .founder-creds{margin-top:28px;display:flex;flex-direction:column;gap:10px}
@@ -246,7 +246,7 @@
     .testimonio-card:hover{border-color:rgba(184,112,74,.3);transform:translateY(-4px);background:rgba(255,255,255,.05)}
     .testimonio-text{font-family:var(--font-display);font-size:clamp(15px,1.5vw,18px);font-weight:300;font-style:italic;color:rgba(250,247,243,.7);line-height:1.8;margin-bottom:24px}
     .testimonio-author{display:flex;flex-direction:column;gap:2px}
-    .testimonio-name{font-size:13px;font-weight:400;color:var(--ivory);letter-spacing:.05em}
+    .testimonio-name{font-size:13px;font-weight:400;color:var(--ink);letter-spacing:.05em}
     .testimonio-role{font-size:11px;font-weight:300;color:var(--terracotta-light);letter-spacing:.1em}
     @media(max-width:900px){.testimonios-track{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}}
 
@@ -356,7 +356,7 @@
     .gallery-item.is-active video{transform:scale(1.02)}
     .gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(26,22,18,.55) 100%);display:flex;align-items:center;justify-content:center;cursor:none;opacity:0;transition:opacity .5s cubic-bezier(.16,1,.3,1)}
     .gallery-item.is-active .gallery-item-overlay{opacity:1}
-    .gallery-play-icon{color:var(--ivory);opacity:.85;transform:scale(.8);transition:all .4s cubic-bezier(.16,1,.3,1)}
+    .gallery-play-icon{color:var(--ink);opacity:.85;transform:scale(.8);transition:all .4s cubic-bezier(.16,1,.3,1)}
     .gallery-item.is-active:hover .gallery-play-icon{transform:scale(1);opacity:1}
 
     /* Gallery Nav */
@@ -377,7 +377,7 @@
     /* Lightbox */
     .gallery-lightbox{position:fixed;inset:0;z-index:10002;background:rgba(26,22,18,.97);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .5s cubic-bezier(.16,1,.3,1),visibility .5s}
     .gallery-lightbox.active{opacity:1;visibility:visible}
-    .lightbox-close{position:absolute;top:28px;right:28px;background:none;border:none;color:var(--ivory);cursor:none;padding:12px;opacity:.6;transition:opacity .3s,transform .3s;z-index:2}
+    .lightbox-close{position:absolute;top:28px;right:28px;background:none;border:none;color:var(--ink);cursor:none;padding:12px;opacity:.6;transition:opacity .3s,transform .3s;z-index:2}
     .lightbox-close:hover{opacity:1;transform:scale(1.1)}
     .lightbox-video{width:auto;height:85vh;max-width:90vw;max-height:85vh;border-radius:2px;outline:none;opacity:0;transform:scale(.95) translateZ(0);transition:all .5s cubic-bezier(.16,1,.3,1) .1s}
     .gallery-lightbox.active .lightbox-video{opacity:1;transform:scale(1) translateZ(0)}
