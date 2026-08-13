@@ -341,6 +341,10 @@
           document.body.appendChild(a);a.click();a.remove();
         });
       });
+      // Guía de la 1ra Serie (lead magnet): el email SÍ se pide antes de descargar.
+      document.querySelectorAll('.lead-magnet-btn').forEach(btn=>{
+        btn.addEventListener('click',()=>openModal(btn.dataset.program||'',btn.dataset.pdf||''));
+      });
       modal.querySelectorAll('[data-dl-close]').forEach(el=>el.addEventListener('click',closeModal));
       document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('active'))closeModal()});
       form.addEventListener('submit',async e=>{
@@ -369,6 +373,38 @@
         }finally{
           submitBtn.disabled=false;
           submitLabel.textContent='Descargar PDF';
+        }
+      });
+    })();
+
+    // === TRIAL CLASS RESERVATION FORM (Contacto) ===
+    (function(){
+      const form=document.getElementById('trialForm');
+      if(!form)return;
+      const errorEl=document.getElementById('trialFormError');
+      const successEl=document.getElementById('trialFormSuccess');
+      const submitBtn=form.querySelector('.trial-submit');
+      const submitLabel=submitBtn.querySelector('.trial-submit__label');
+      form.addEventListener('submit',async e=>{
+        e.preventDefault();
+        errorEl.hidden=true;
+        submitBtn.disabled=true;
+        submitLabel.textContent='Enviando...';
+        try{
+          const data=new FormData(form);
+          const res=await fetch('https://formsubmit.co/ajax/kikefay@gmail.com',{method:'POST',headers:{'Accept':'application/json'},body:data});
+          const json=await res.json();
+          if(json.success==='true'||json.success===true){
+            form.hidden=true;
+            successEl.hidden=false;
+          }else{
+            errorEl.hidden=false;
+          }
+        }catch(err){
+          errorEl.hidden=false;
+        }finally{
+          submitBtn.disabled=false;
+          submitLabel.textContent='Reservar clase de prueba';
         }
       });
     })();

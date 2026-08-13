@@ -441,3 +441,36 @@
     .gallery-item{border-color:rgba(255,255,255,.06)}
     .gallery-item.is-active{box-shadow:0 24px 70px rgba(0,0,0,.35)}
     .gallery-arrow{border-color:rgba(255,255,255,.12);color:var(--ink)}
+
+    /* === TEAM (Matías / Gerva) === */
+    .team-block{margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.08)}
+    .team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,220px));gap:20px}
+    .team-card{background:var(--white);border:1px solid rgba(255,255,255,.06);padding:24px 20px;text-align:center;transition:all .4s cubic-bezier(.16,1,.3,1)}
+    .team-card:hover{border-color:var(--terracotta);transform:translateY(-2px)}
+    .team-avatar{width:52px;height:52px;margin:0 auto 14px;border-radius:50%;border:1px solid var(--terracotta);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-style:italic;font-size:20px;color:var(--terracotta-light)}
+    .team-name{font-family:var(--font-display);font-size:18px;color:var(--ink);margin-bottom:4px}
+    .team-role{font-size:11px;color:var(--ink-muted);letter-spacing:.05em}
+    @media(max-width:520px){.team-grid{grid-template-columns:1fr;max-width:220px;margin:0 auto}}
+
+    /* === LEAD MAGNET (Guía 1ra Serie) === */
+    .lead-magnet{margin-top:40px;padding:28px 32px;background:var(--white);border:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    .lead-magnet-eyebrow{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--terracotta);margin-bottom:8px}
+    .lead-magnet-title{font-family:var(--font-display);font-size:22px;color:var(--ink)}
+    .lead-magnet-title em{color:var(--terracotta);font-style:italic}
+    .lead-magnet-desc{font-size:13px;color:var(--ink-muted);margin-top:6px;max-width:46ch}
+    .lead-magnet-btn{flex-shrink:0;font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#fff;background:var(--terracotta);border:none;padding:16px 32px;cursor:none;transition:background .3s}
+    .lead-magnet-btn:hover{background:#a16240}
+    @media(max-width:640px){.lead-magnet{flex-direction:column;text-align:center;padding:28px 24px}.lead-magnet-desc{max-width:none}}
+
+    /* === TRIAL CLASS FORM (Contacto) === */
+    .trial-form-card{max-width:560px;margin:0 auto 48px;padding:36px 36px 32px;background:var(--white);border:1px solid rgba(255,255,255,.06)}
+    .trial-form-eyebrow{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--terracotta-light);margin-bottom:8px}
+    .trial-form-title{font-family:var(--font-display);font-size:26px;color:var(--ink);margin-bottom:24px}
+    .trial-form{display:flex;flex-direction:column;gap:16px}
+    .trial-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .trial-form .dl-field select,.trial-form .dl-field textarea{font-family:var(--font-body);font-size:14px;font-weight:300;color:var(--ink);background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.12);padding:8px 0;transition:border-color .3s;cursor:none;resize:none}
+    .trial-form .dl-field select:focus,.trial-form .dl-field textarea:focus{outline:none;border-bottom-color:var(--terracotta)}
+    .trial-form .dl-field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8704a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 2px center}
+    .trial-form .dl-field select option{background:var(--white);color:var(--ink)}
+    .trial-submit{width:100%}
+    @media(max-width:560px){.trial-form-card{padding:28px 22px}.trial-form-row{grid-template-columns:1fr}}

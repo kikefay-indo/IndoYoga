@@ -169,6 +169,14 @@
         <p class="precio-note">La clase de prueba se descuenta del pago del mes. Se abona mes completo hasta el día 10. Las clases se recuperan dentro del mes con el mismo profesor.</p>
       </div>
     </div>
+    <div class="lead-magnet reveal">
+      <div class="lead-magnet-text">
+        <p class="lead-magnet-eyebrow">Guía gratuita</p>
+        <p class="lead-magnet-title">Guía de la <em>1ra Serie</em></p>
+        <p class="lead-magnet-desc">Las posturas, la estructura y la filosofía de la Primera Serie de Ashtanga — en un PDF gratis.</p>
+      </div>
+      <button type="button" class="lead-magnet-btn" data-program="Guía de la 1ra Serie" data-pdf="assets/docs/guia-primera-serie-indoyoga.pdf">Quiero la guía</button>
+    </div>
   </section>
 
   <!-- QUOTE INTERLUDE -->
@@ -216,6 +224,21 @@
           <div class="founder-cred">Hatha Yoga, Biomecánica y Filosofía avanzada</div>
         </div>
         <div class="founder-book"><p>Autor de "Ashtanga Yoga Para Sí Mismo" — Ed. Autores de Argentina, 2015</p><a href="assets/docs/ashtanga-yoga-para-si-mismo-kike-fay.pdf" download class="book-download-btn">Descargar libro (PDF)</a></div>
+      </div>
+    </div>
+    <div class="team-block reveal">
+      <p class="section-eyebrow">El equipo</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">M</div>
+          <p class="team-name">Matías</p>
+          <p class="team-role">Guiada / Flow · Ashtanga Mysore</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">G</div>
+          <p class="team-name">Gerva</p>
+          <p class="team-role">Ashtanga / Flow</p>
+        </div>
       </div>
     </div>
   </section>
@@ -297,6 +320,58 @@
   <section id="contacto" class="section">
     <div class="reveal"><p class="section-eyebrow">Conectar</p><h2 class="section-title">Contacto</h2><p class="section-desc">Escribinos para reservar tu clase de prueba, solicitar entrevista para formación, o conocer más.</p></div>
     <div class="divider-animated reveal"></div>
+
+    <div class="trial-form-card reveal" id="trialFormCard">
+      <p class="trial-form-eyebrow">Reservá sin escribir primero</p>
+      <h3 class="trial-form-title">Clase de prueba</h3>
+      <form class="trial-form" id="trialForm" novalidate>
+        <input type="hidden" name="_subject" value="Nueva reserva de clase de prueba — IndoYoga">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <div class="trial-form-row">
+          <label class="dl-field">
+            <span>Nombre</span>
+            <input type="text" name="nombre" required minlength="2" autocomplete="given-name">
+          </label>
+          <label class="dl-field">
+            <span>Apellido</span>
+            <input type="text" name="apellido" required minlength="2" autocomplete="family-name">
+          </label>
+        </div>
+        <div class="trial-form-row">
+          <label class="dl-field">
+            <span>WhatsApp</span>
+            <input type="tel" name="whatsapp" required autocomplete="tel">
+          </label>
+          <label class="dl-field">
+            <span>Email</span>
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+        </div>
+        <label class="dl-field">
+          <span>Clase de interés</span>
+          <select name="clase" required>
+            <option value="" disabled selected>Elegí una opción</option>
+            <option>Guiada / Flow</option>
+            <option>Ashtanga / Flow</option>
+            <option>Ashtanga Mysore</option>
+            <option>No estoy seguro/a</option>
+          </select>
+        </label>
+        <label class="dl-field">
+          <span>Comentario (opcional)</span>
+          <textarea name="comentario" rows="2"></textarea>
+        </label>
+        <button type="submit" class="dl-submit trial-submit"><span class="trial-submit__label">Reservar clase de prueba</span></button>
+        <p class="dl-modal__error" id="trialFormError" hidden>Hubo un problema. Probá de nuevo en un minuto, o escribinos directo por WhatsApp.</p>
+      </form>
+      <div class="dl-modal__success" id="trialFormSuccess" hidden>
+        <p class="dl-success-mark">✓</p>
+        <p class="dl-success-text">¡Listo! Te contactamos para confirmar día y horario.</p>
+      </div>
+    </div>
+
     <div class="contacto-new-grid">
       <div class="contacto-qr-cards">
         <div class="qr-card reveal">
