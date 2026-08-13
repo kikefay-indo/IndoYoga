@@ -173,9 +173,12 @@
       <div class="lead-magnet-text">
         <p class="lead-magnet-eyebrow">Guía gratuita</p>
         <p class="lead-magnet-title">Guía de la <em>1ra Serie</em></p>
-        <p class="lead-magnet-desc">Las posturas, la estructura y la filosofía de la Primera Serie de Ashtanga — en un PDF gratis.</p>
+        <p class="lead-magnet-desc">Las posturas, la estructura y la filosofía de la Primera Serie de Ashtanga — en un PDF gratis. ¿Preferís probarla en la Shala? Reservá tu primera clase.</p>
       </div>
-      <button type="button" class="lead-magnet-btn" data-program="Guía de la 1ra Serie" data-pdf="assets/docs/guia-primera-serie-indoyoga.pdf">Quiero la guía</button>
+      <div class="lead-magnet-actions">
+        <a href="#contacto" class="lead-magnet-btn lead-magnet-btn-primary">Reservar clase de prueba</a>
+        <button type="button" class="lead-magnet-btn lead-magnet-btn-ghost" data-program="Guía de la 1ra Serie" data-pdf="assets/docs/guia-primera-serie-indoyoga.pdf">Quiero la guía</button>
+      </div>
     </div>
   </section>
 
@@ -350,13 +353,25 @@
           </label>
         </div>
         <label class="dl-field">
-          <span>Clase de interés</span>
-          <select name="clase" required>
-            <option value="" disabled selected>Elegí una opción</option>
-            <option>Guiada / Flow</option>
-            <option>Ashtanga / Flow</option>
-            <option>Ashtanga Mysore</option>
-            <option>No estoy seguro/a</option>
+          <span>Horario preferido</span>
+          <select name="horario" required>
+            <option value="" disabled selected>Elegí un horario</option>
+            <optgroup label="08:30">
+              <option>Lunes 08:30 — Guiada / Flow (Matías)</option>
+              <option>Miércoles 08:30 — Guiada / Flow (Matías)</option>
+              <option>Jueves 08:30 — Ashtanga Mysore (Matías)</option>
+            </optgroup>
+            <optgroup label="18:30">
+              <option>Lunes 18:30 — Ashtanga / Flow (Gerva)</option>
+              <option>Martes 18:30 — Ashtanga / Flow (Kike)</option>
+              <option>Miércoles 18:30 — Ashtanga / Flow (Gerva)</option>
+              <option>Jueves 18:30 — Ashtanga / Flow (Kike)</option>
+            </optgroup>
+            <optgroup label="20:00">
+              <option>Martes 20:00 — Ashtanga Mysore (Kike)</option>
+              <option>Jueves 20:00 — Ashtanga Mysore (Kike)</option>
+            </optgroup>
+            <option>No estoy seguro/a — quiero que me recomienden</option>
           </select>
         </label>
         <label class="dl-field">

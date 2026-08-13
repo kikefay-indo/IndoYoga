@@ -474,3 +474,13 @@
     .trial-form .dl-field select option{background:var(--white);color:var(--ink)}
     .trial-submit{width:100%}
     @media(max-width:560px){.trial-form-card{padding:28px 22px}.trial-form-row{grid-template-columns:1fr}}
+
+    /* === LEAD MAGNET: dual CTA === */
+    .lead-magnet-actions{display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+    .lead-magnet-btn-primary{background:var(--terracotta);color:#fff}
+    .lead-magnet-btn-primary:hover{background:#a16240}
+    .lead-magnet-btn-ghost{background:transparent;color:var(--terracotta-light);border:1px solid rgba(255,255,255,.16)}
+    .lead-magnet-btn-ghost:hover{background:rgba(255,255,255,.04);border-color:var(--terracotta)}
+    .lead-magnet-btn{text-align:center;text-decoration:none}
+    .trial-form .dl-field select optgroup{color:var(--ink-muted);font-style:normal;font-weight:500}
+    @media(max-width:640px){.lead-magnet-actions{width:100%}}
