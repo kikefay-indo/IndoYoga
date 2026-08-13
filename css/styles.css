@@ -37,10 +37,11 @@
     .nav-logo:hover .nav-logo-mark{opacity:.85;transform:scale(1.05)}
     .nav-logo-text{font-family:var(--font-display);font-size:clamp(11px,1.1vw,13px);font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);padding-left:.28em}
     .nav-logo-text em{font-style:italic;color:var(--terracotta);font-weight:300}
-    .nav-links{display:flex;gap:clamp(20px,3vw,48px);list-style:none;align-items:center}
-    .nav-links a{font-size:10.5px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);text-decoration:none;position:relative;padding-bottom:3px;overflow:hidden}
-    .nav-link-line{position:absolute;bottom:0;left:0;width:100%;height:1px;background:var(--terracotta);transform:translateX(-101%);transition:transform .5s cubic-bezier(.16,1,.3,1)}
-    .nav-links a:hover .nav-link-line{transform:translateX(0)}
+    .nav-links{position:relative;display:flex;gap:clamp(20px,3vw,48px);list-style:none;align-items:center}
+    .nav-links a{display:block;font-size:10.5px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding-bottom:6px;transition:color .3s}
+    .nav-links a:hover{color:var(--terracotta-light)}
+    .nav-indicator{position:absolute;bottom:0;height:1px;background:var(--terracotta);opacity:0;transition:left .4s cubic-bezier(.16,1,.3,1),width .4s cubic-bezier(.16,1,.3,1),opacity .3s;pointer-events:none}
+    .nav-indicator.visible{opacity:1}
     .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:none;padding:8px;z-index:1002;background:none;border:none}
     .nav-toggle span{width:26px;height:1.5px;background:var(--ink);display:block;transition:all .4s cubic-bezier(.16,1,.3,1)}
     .nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
