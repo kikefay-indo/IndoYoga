@@ -376,7 +376,10 @@
         });
       });
       // Guía de la 1ra Serie (lead magnet): el email SÍ se pide antes de descargar.
-      document.querySelectorAll('.lead-magnet-btn').forEach(btn=>{
+      // Solo los botones que realmente ofrecen un PDF (data-pdf) abren este modal;
+      // el link "Reservar clase de prueba" comparte la clase .lead-magnet-btn pero
+      // debe navegar directo a #contacto sin interrumpir con el cuadro de descarga.
+      document.querySelectorAll('.lead-magnet-btn[data-pdf]').forEach(btn=>{
         btn.addEventListener('click',()=>openModal(btn.dataset.program||'',btn.dataset.pdf||''));
       });
       modal.querySelectorAll('[data-dl-close]').forEach(el=>el.addEventListener('click',closeModal));
