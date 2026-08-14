@@ -445,14 +445,14 @@
 
     /* === TEAM (Matías / Gerva) === */
     .team-block{margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.08)}
-    .team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,220px));gap:20px}
-    .team-card{background:var(--white);border:1px solid rgba(255,255,255,.06);padding:24px 20px;text-align:center;transition:all .4s cubic-bezier(.16,1,.3,1)}
+    .team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,240px));gap:24px}
+    .team-card{background:var(--white);border:1px solid rgba(255,255,255,.06);padding:20px 20px 24px;text-align:center;transition:all .4s cubic-bezier(.16,1,.3,1)}
     .team-card:hover{border-color:var(--terracotta);transform:translateY(-2px)}
-    .team-avatar{width:160px;height:160px;margin:0 auto 18px;border-radius:50%;border:1px solid var(--terracotta);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-style:italic;font-size:20px;color:var(--terracotta-light);overflow:hidden}
-    .team-avatar img{width:100%;height:100%;object-fit:cover}
+    .team-avatar{width:100%;aspect-ratio:3/4;margin:0 auto 16px;border-radius:10px;border:1px solid var(--terracotta);overflow:hidden}
+    .team-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center}
     .team-name{font-family:var(--font-display);font-size:18px;color:var(--ink);margin-bottom:4px}
     .team-role{font-size:11px;color:var(--ink-muted);letter-spacing:.05em}
-    @media(max-width:520px){.team-grid{grid-template-columns:1fr;max-width:220px;margin:0 auto}}
+    @media(max-width:520px){.team-grid{grid-template-columns:1fr;max-width:240px;margin:0 auto}}
 
     /* === LEAD MAGNET (Guía 1ra Serie) === */
     .lead-magnet{margin-top:40px;padding:28px 32px;background:var(--white);border:1px solid rgba(0,0,0,.06);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
