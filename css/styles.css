@@ -344,6 +344,12 @@
       .qr-mobile-btn{display:inline-block}
     }
 
+    /* === SEGUINOS (redes) === */
+    .social-cards-grid{grid-template-columns:repeat(4,1fr)}
+    .social-btn{display:inline-block!important;margin-top:4px}
+    @media(max-width:900px){.social-cards-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.social-cards-grid{grid-template-columns:1fr}}
+
     /* === GALLERY — Centered Carousel === */
     #galeria{background:var(--ivory);overflow:hidden}
     .gallery-track{position:relative;width:100%;height:480px;margin-top:48px;perspective:1200px;overflow:visible}
