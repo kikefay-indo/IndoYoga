@@ -87,7 +87,7 @@
     document.addEventListener('mousemove',e=>{dx=e.clientX;dy=e.clientY;dot.style.left=dx+'px';dot.style.top=dy+'px'});
     function animCursor(){cx+=(dx-cx)*.12;cy+=(dy-cy)*.12;cursor.style.left=cx+'px';cursor.style.top=cy+'px';requestAnimationFrame(animCursor)}
     animCursor();
-    document.querySelectorAll('a,button,.btn-primary,.formacion-card,.precio-item,.gallery-item,.whatsapp-float').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'))});
+    document.querySelectorAll('a,button,.btn-primary,.formacion-card,.precio-item,.gallery-item,.whatsapp-float,.payment-float').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'))});
     document.addEventListener('mousedown',()=>cursor.classList.add('click'));
     document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
 
@@ -312,6 +312,7 @@
     const pImg=document.getElementById('parallaxImg'),fSec=document.getElementById('founder'),orbs=document.querySelectorAll('.hero-orb');
     const scrollBar=document.getElementById('scrollProgress');
     const waFloat=document.getElementById('whatsappFloat');
+    const payFloat=document.getElementById('paymentFloat');
     let tick=false;
     window.addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(()=>{
       const sY=smoothEnabled?currentScroll:window.scrollY;
@@ -321,8 +322,9 @@
       // Scroll progress
       const docH=document.documentElement.scrollHeight-window.innerHeight;
       if(scrollBar&&docH>0)scrollBar.style.width=(window.scrollY/docH*100)+'%';
-      // WhatsApp float show after 400px
+      // WhatsApp + Pago float show together after 400px
       if(waFloat)waFloat.classList.toggle('visible',window.scrollY>400);
+      if(payFloat)payFloat.classList.toggle('visible',window.scrollY>400);
       tick=false});tick=true}});
 
     // === WAVE ANIMATIONS ===
