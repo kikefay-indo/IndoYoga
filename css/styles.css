@@ -486,6 +486,10 @@
     .trial-submit{width:100%}
     @media(max-width:560px){.trial-form-card{padding:28px 22px}.trial-form-row{grid-template-columns:1fr}}
 
+    .app-cta-btn{display:block;width:100%;box-sizing:border-box;margin-top:16px;text-align:center;font-family:var(--font-body);font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:var(--terracotta);border:none;padding:22px 32px;cursor:none;text-decoration:none;transition:background .3s}
+    .app-cta-btn:hover{background:#a16240}
+    @media(max-width:640px){.app-cta-btn{font-size:11px;padding:18px 20px}}
+
     /* === LEAD MAGNET: dual CTA === */
     .lead-magnet-actions{display:flex;flex-direction:column;gap:10px;flex-shrink:0}
     .lead-magnet-btn-primary{background:var(--terracotta);color:#fff}
