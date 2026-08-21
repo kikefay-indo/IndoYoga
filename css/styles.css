@@ -603,8 +603,9 @@
     @media(max-width:480px){
       .breathe-modal__card{padding:38px 22px 30px}
       .breathe-circle{width:180px;height:180px}
-      .breathe-mood-btn span:last-child{display:none}
-      .breathe-mood-btn{padding:9px}
+      .breathe-mood-picker{gap:6px}
+      .breathe-mood-btn{padding:8px 12px 8px 8px;font-size:10px;gap:6px}
+      .breathe-mood-icon{width:19px;height:19px;font-size:.7rem}
     }
     @media(max-width:900px){
       .breathe-modal__close,.breathe-mood-btn,.breathe-btn{cursor:auto}
