@@ -313,6 +313,7 @@
     const scrollBar=document.getElementById('scrollProgress');
     const waFloat=document.getElementById('whatsappFloat');
     const payFloat=document.getElementById('paymentFloat');
+    const breatheFloat=document.getElementById('breatheFloat');
     let tick=false;
     window.addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(()=>{
       const sY=smoothEnabled?currentScroll:window.scrollY;
@@ -325,6 +326,8 @@
       // WhatsApp + Pago float show together after 400px
       if(waFloat)waFloat.classList.toggle('visible',window.scrollY>400);
       if(payFloat)payFloat.classList.toggle('visible',window.scrollY>400);
+      // Respira ocupa ese mismo lugar hasta los 400px, después le cede el paso a WhatsApp
+      if(breatheFloat)breatheFloat.classList.toggle('is-hidden',window.scrollY>400);
       tick=false});tick=true}});
 
     // === WAVE ANIMATIONS ===
@@ -446,4 +449,151 @@
           submitLabel.textContent='Reservar clase de prueba';
         }
       });
+    })();
+
+    // === RESPIRA SEGÚN TU EMOCIÓN (breathing practice modal) ===
+    (function(){
+      const floatBtn=document.getElementById('breatheFloat');
+      const modal=document.getElementById('breatheModal');
+      if(!floatBtn||!modal)return;
+
+      const BREATH_STATES={
+        panico:{
+          label:'Pánico / Estrés',
+          patternLabel:'4 – 7 – 8',
+          keyframe:'rBreathePanico',
+          total:19,
+          phases:[{name:'Inhala',seconds:4},{name:'Sostén',seconds:7},{name:'Exhala',seconds:8}]
+        },
+        dispersion:{
+          label:'Dispersión / Cansancio',
+          patternLabel:'3 – 6 – 9',
+          keyframe:'rBreatheDispersion',
+          total:18,
+          phases:[{name:'Inhala',seconds:3},{name:'Sostén',seconds:6},{name:'Exhala',seconds:9}]
+        },
+        euforia:{
+          label:'Euforia / Impulsividad',
+          patternLabel:'Cuadrado 4-4-4-4',
+          keyframe:'rBreatheEuforia',
+          total:16,
+          phases:[{name:'Inhala',seconds:4},{name:'Sostén',seconds:4},{name:'Exhala',seconds:4},{name:'Sostén',seconds:4}]
+        }
+      };
+      const MOOD_COLORS={panico:'#d4956e',dispersion:'#7a8c6e',euforia:'#c9a96e'};
+      // universal phase colors — same across the 3 patterns, so the color itself
+      // becomes a learned cue: verde = inhalá, dorado = sostené, terracota = exhalá.
+      const PHASE_COLORS={'Inhala':'#7a8c6e','Sostén':'#c9a96e','Exhala':'#d4956e'};
+
+      function makePhaseWalker({phaseEl,countEl,arcEl,onCycle}){
+        let mood='panico',phaseIdx=0,count=1,intervalId=null;
+        function paint(){
+          const phase=BREATH_STATES[mood].phases[phaseIdx];
+          const color=PHASE_COLORS[phase.name]||MOOD_COLORS[mood];
+          phaseEl.textContent=phase.name;
+          phaseEl.style.color=color;
+          if(countEl){
+            countEl.textContent=count;
+            countEl.style.color=color;
+            countEl.classList.remove('tick');
+            void countEl.offsetWidth;
+            countEl.classList.add('tick');
+          }
+          if(arcEl)arcEl.style.stroke=color;
+        }
+        return{
+          setMood(key){mood=key;phaseIdx=0;count=1},
+          start(){
+            if(intervalId)clearInterval(intervalId);
+            paint();
+            intervalId=setInterval(()=>{
+              const phase=BREATH_STATES[mood].phases[phaseIdx];
+              if(count>=phase.seconds){
+                phaseIdx++;
+                if(phaseIdx>=BREATH_STATES[mood].phases.length){phaseIdx=0;if(onCycle)onCycle()}
+                count=1;
+              }else{count++}
+              paint();
+            },1000);
+          },
+          stop(){clearInterval(intervalId);intervalId=null}
+        };
+      }
+
+      const phaseEl=document.getElementById('breathePhase');
+      const countEl=document.getElementById('breatheCount');
+      const tickEl=document.getElementById('breatheTick');
+      const coreEl=document.getElementById('breatheCore');
+      const arcEl=document.getElementById('breatheArc');
+      const cycleEl=document.getElementById('breatheCycleCount');
+      const startBtn=document.getElementById('breatheStart');
+      const stopBtn=document.getElementById('breatheStop');
+      const moodBtns=document.querySelectorAll('#breatheMoodPicker .breathe-mood-btn');
+      let mood='panico',cycles=0,lastFocused=null;
+
+      const walker=makePhaseWalker({
+        phaseEl,countEl,arcEl,
+        onCycle:()=>{cycles++;cycleEl.textContent=cycles}
+      });
+
+      function resetState(){
+        walker.stop();
+        walker.setMood(mood);
+        phaseEl.textContent='Prepárate';
+        phaseEl.style.color='';
+        countEl.textContent='';
+        cycles=0;cycleEl.textContent='0';
+        startBtn.hidden=false;stopBtn.hidden=true;
+        const state=BREATH_STATES[mood];
+        tickEl.textContent=state.patternLabel;
+        coreEl.style.animation=state.keyframe+' '+state.total+'s ease-in-out infinite';
+        coreEl.style.animationPlayState='paused';
+        arcEl.style.animation='rArcFill '+state.total+'s linear infinite';
+        arcEl.style.animationPlayState='paused';
+        arcEl.style.stroke=MOOD_COLORS[mood];
+      }
+
+      function applyMood(key){
+        mood=key;
+        moodBtns.forEach(btn=>btn.setAttribute('aria-pressed',btn.dataset.mood===key?'true':'false'));
+        resetState();
+      }
+      moodBtns.forEach(btn=>btn.addEventListener('click',()=>applyMood(btn.dataset.mood)));
+
+      startBtn.addEventListener('click',()=>{
+        startBtn.hidden=true;stopBtn.hidden=false;
+        coreEl.style.animationPlayState='running';
+        arcEl.style.animationPlayState='running';
+        walker.start();
+      });
+      stopBtn.addEventListener('click',()=>{
+        walker.stop();
+        startBtn.hidden=false;stopBtn.hidden=true;
+        phaseEl.textContent='En pausa';
+        phaseEl.style.color='';
+        countEl.textContent='';
+        coreEl.style.animationPlayState='paused';
+        arcEl.style.animationPlayState='paused';
+      });
+
+      function openModal(){
+        lastFocused=document.activeElement;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+        resetState();
+        setTimeout(()=>startBtn.focus(),300);
+      }
+      function closeModal(){
+        walker.stop();
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+        coreEl.style.animationPlayState='paused';
+        arcEl.style.animationPlayState='paused';
+        if(lastFocused&&typeof lastFocused.focus==='function')lastFocused.focus();
+      }
+      floatBtn.addEventListener('click',openModal);
+      modal.querySelectorAll('[data-breathe-close]').forEach(el=>el.addEventListener('click',closeModal));
+      document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('active'))closeModal()});
     })();

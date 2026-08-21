@@ -506,3 +506,109 @@
     .lead-magnet-btn{text-align:center;text-decoration:none}
     .trial-form .dl-field select optgroup{color:var(--ink-muted);font-style:normal;font-weight:500}
     @media(max-width:640px){.lead-magnet-actions{width:100%}}
+
+    /* ============================================================
+       RESPIRA SEGÚN TU EMOCIÓN — floating breathing-practice widget
+       ============================================================ */
+
+    /* --- floating trigger: occupies the WhatsApp slot before scroll,
+       hands it off to WhatsApp/Pago once the visitor scrolls past 400px --- */
+    .breathe-float{
+      position:fixed;bottom:28px;right:28px;z-index:999;
+      display:flex;align-items:center;gap:10px;
+      padding:14px 20px 14px 16px;
+      background:var(--white);color:var(--ink);
+      border:1px solid rgba(201,169,110,.4);
+      font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+      white-space:nowrap;text-decoration:none;cursor:none;
+      box-shadow:0 4px 20px rgba(0,0,0,.3);
+      opacity:1;transform:translateY(0);
+      transition:all .5s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s;
+    }
+    .breathe-float.is-hidden{opacity:0;transform:translateY(20px);pointer-events:none}
+    .breathe-float:hover{border-color:var(--gold);background:var(--cream)}
+    .breathe-float__dot{
+      position:relative;width:10px;height:10px;border-radius:50%;flex-shrink:0;
+      background:var(--sage);box-shadow:0 0 0 0 rgba(122,140,110,.5);
+      animation:breatheFloatPulse 3.6s ease-in-out infinite;
+    }
+    @keyframes breatheFloatPulse{
+      0%,100%{box-shadow:0 0 0 0 rgba(122,140,110,.45);}
+      50%{box-shadow:0 0 0 7px rgba(122,140,110,0);}
+    }
+    @media(max-width:900px){
+      .breathe-float{cursor:auto;bottom:20px;right:20px;padding:12px 16px 12px 13px;font-size:9.5px;gap:8px}
+    }
+    @media(max-width:480px){
+      .breathe-float__text{max-width:34vw;overflow:hidden;text-overflow:ellipsis}
+    }
+
+    /* --- modal shell (mirrors .dl-modal conventions: sharp corners, dark card, blurred backdrop) --- */
+    .breathe-modal{position:fixed;inset:0;z-index:10003;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .4s cubic-bezier(.16,1,.3,1),visibility .4s}
+    .breathe-modal.active{opacity:1;visibility:visible}
+    .breathe-modal__backdrop{position:absolute;inset:0;background:rgba(10,9,8,.85);backdrop-filter:blur(8px)}
+    .breathe-modal__card{position:relative;background:var(--white);max-width:420px;width:100%;padding:44px 34px 36px;border:1px solid rgba(255,255,255,.06);box-shadow:0 24px 80px rgba(0,0,0,.4);text-align:center;transform:translateY(16px);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+    .breathe-modal.active .breathe-modal__card{transform:translateY(0)}
+    .breathe-modal__close{position:absolute;top:16px;right:16px;width:32px;height:32px;background:none;border:none;color:var(--ink-muted);font-size:24px;line-height:1;cursor:none;transition:color .3s,transform .3s}
+    .breathe-modal__close:hover{color:var(--terracotta);transform:rotate(90deg)}
+    .breathe-modal__eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--terracotta-light);margin-bottom:22px}
+
+    /* --- mood picker (3 pills: Pánico / Dispersión / Euforia) --- */
+    .breathe-mood-picker{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+    .breathe-mood-btn{
+      display:flex;align-items:center;gap:8px;padding:9px 16px 9px 10px;border-radius:999px;
+      background:transparent;border:1px solid rgba(255,255,255,.12);color:var(--ink-muted);
+      font-family:var(--font-body);font-size:11px;font-weight:400;cursor:none;
+      transition:border-color .3s,color .3s,background .3s;
+    }
+    .breathe-mood-btn:hover{color:var(--ink)}
+    .breathe-mood-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;flex-shrink:0;background:rgba(255,255,255,.06)}
+    .breathe-mood-btn[data-mood="panico"][aria-pressed="true"]{border-color:var(--terracotta-light);color:var(--ink);background:rgba(212,149,110,.08)}
+    .breathe-mood-btn[data-mood="dispersion"][aria-pressed="true"]{border-color:var(--sage);color:var(--ink);background:rgba(122,140,110,.08)}
+    .breathe-mood-btn[data-mood="euforia"][aria-pressed="true"]{border-color:var(--gold);color:var(--ink);background:rgba(201,169,110,.08)}
+
+    /* --- the breathing circle: static ring + animated progress arc + pulsing core + live phase/count --- */
+    .breathe-circle{position:relative;width:220px;height:220px;margin:0 auto}
+    .breathe-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,255,255,.1)}
+    .breathe-ring--inner{inset:18px;opacity:.6}
+    .breathe-arc{position:absolute;inset:0;transform:rotate(-90deg);pointer-events:none}
+    .breathe-arc circle{fill:none}
+    .breathe-arc-track{stroke:rgba(255,255,255,.1);stroke-width:1.6}
+    .breathe-arc-fill{stroke:var(--gold);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:301.59;stroke-dashoffset:301.59;transition:stroke .4s ease}
+    @keyframes rArcFill{0%{stroke-dashoffset:301.59}100%{stroke-dashoffset:0}}
+    .breathe-core{
+      position:absolute;inset:0;margin:auto;width:48%;height:48%;border-radius:50%;
+      background:radial-gradient(circle at 35% 30%,rgba(201,169,110,.35),rgba(122,140,110,.16) 60%,transparent 75%);
+      animation:rBreathePanico 19s ease-in-out infinite;
+    }
+    @keyframes rBreathePanico{0%{transform:scale(.72)}21.05%{transform:scale(1.08)}57.89%{transform:scale(1.08)}100%{transform:scale(.72)}}
+    @keyframes rBreatheDispersion{0%{transform:scale(.72)}16.67%{transform:scale(1.08)}50%{transform:scale(1.08)}100%{transform:scale(.72)}}
+    @keyframes rBreatheEuforia{0%{transform:scale(.72)}25%{transform:scale(1.08)}50%{transform:scale(1.08)}75%{transform:scale(.72)}100%{transform:scale(.72)}}
+    .breathe-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .breathe-phase{font-family:var(--font-body);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);transition:color .35s ease}
+    .breathe-count{font-family:var(--font-display);font-weight:400;font-style:italic;font-size:2.4rem;line-height:1;margin-top:6px;color:var(--gold);transition:color .35s ease;font-variant-numeric:tabular-nums;min-height:1.1em}
+    .breathe-count.tick{animation:breatheCountPulse .5s cubic-bezier(.34,1.56,.64,1)}
+    @keyframes breatheCountPulse{0%{transform:scale(.8);opacity:.5}100%{transform:scale(1);opacity:1}}
+    .breathe-tick{font-family:var(--font-display);font-style:italic;font-size:.82rem;color:var(--terracotta-light);margin-top:6px;opacity:.8}
+
+    .breathe-cycles{margin-top:22px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-muted)}
+
+    .breathe-actions{margin-top:22px;display:flex;gap:12px;justify-content:center}
+    .breathe-btn{font-family:var(--font-body);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:14px 30px;border:none;cursor:none;transition:background .3s,color .3s,border-color .3s}
+    .breathe-btn--primary{background:var(--terracotta);color:var(--ivory)}
+    .breathe-btn--primary:hover{background:#a16240}
+    .breathe-btn--ghost{background:transparent;color:var(--ink-muted);border:1px solid rgba(255,255,255,.16)}
+    .breathe-btn--ghost:hover{border-color:var(--terracotta);color:var(--ink)}
+
+    @media(max-width:480px){
+      .breathe-modal__card{padding:38px 22px 30px}
+      .breathe-circle{width:180px;height:180px}
+      .breathe-mood-btn span:last-child{display:none}
+      .breathe-mood-btn{padding:9px}
+    }
+    @media(max-width:900px){
+      .breathe-modal__close,.breathe-mood-btn,.breathe-btn{cursor:auto}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .breathe-core,.breathe-arc-fill,.breathe-float__dot,.breathe-count.tick{animation:none!important}
+    }
