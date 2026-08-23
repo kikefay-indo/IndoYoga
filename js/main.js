@@ -600,3 +600,24 @@
       modal.querySelectorAll('[data-breathe-close]').forEach(el=>el.addEventListener('click',closeModal));
       document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('active'))closeModal()});
     })();
+
+    // === FAQ ACCORDION ===
+    (function(){
+      const items=[...document.querySelectorAll('.faq-item')];
+      if(!items.length)return;
+      items.forEach(item=>{
+        const btn=item.querySelector('.faq-question');
+        const answer=item.querySelector('.faq-answer');
+        btn.addEventListener('click',()=>{
+          const isOpen=btn.getAttribute('aria-expanded')==='true';
+          items.forEach(other=>{
+            other.querySelector('.faq-question').setAttribute('aria-expanded','false');
+            other.querySelector('.faq-answer').style.maxHeight=null;
+          });
+          if(!isOpen){
+            btn.setAttribute('aria-expanded','true');
+            answer.style.maxHeight=answer.scrollHeight+'px';
+          }
+        });
+      });
+    })();
