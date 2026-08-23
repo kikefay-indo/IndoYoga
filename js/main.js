@@ -118,7 +118,10 @@
       const indicator=document.getElementById('navIndicator');
       if(!navLinksEl||!indicator)return;
       const links=[...navLinksEl.querySelectorAll('a')];
-      const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      // Solo los links de ancla (#seccion) participan del scroll-spy; un link
+      // externo (ej. "Ingresar" a la app) no es un selector CSS válido.
+      const hashLinks=links.filter(a=>a.getAttribute('href').startsWith('#'));
+      const sections=hashLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
       let activeLink=null;
 
       function place(link){
@@ -137,7 +140,7 @@
         entries.forEach(entry=>{
           if(entry.isIntersecting){
             const idx=sections.indexOf(entry.target);
-            if(idx>-1){activeLink=links[idx];place(activeLink)}
+            if(idx>-1){activeLink=hashLinks[idx];place(activeLink)}
           }
         });
       },{rootMargin:'-45% 0px -45% 0px',threshold:0});
