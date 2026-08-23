@@ -383,7 +383,8 @@
       .qr-mobile-btn{display:inline-block}
     }
 
-    /* === SEGUINOS (redes) === */
+    /* === SEGUINOS (redes, agrupado dentro de Contacto) === */
+    .contacto-social-label{text-align:center;font-size:10px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--terracotta);margin:0 0 20px}
     .social-cards-grid{grid-template-columns:repeat(2,minmax(0,280px));max-width:600px;margin-left:auto;margin-right:auto}
     .social-btn{display:inline-block!important;margin-top:4px}
     @media(max-width:520px){.social-cards-grid{grid-template-columns:1fr;max-width:280px}}
