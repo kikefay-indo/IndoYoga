@@ -49,7 +49,7 @@ indoyoga-website/
 
 ### Secciones
 1. **Hero** — Nombre con separación tipográfica Indo/Yoga + tagline
-2. **Clases** — Horarios y valores mensuales (Febrero 2026)
+2. **Clases** — Horarios y valores mensuales (se actualiza mes a mes)
 3. **Quote** — Interludio emocional con frase de Kike Fay
 4. **Formación** — Dos programas: Ashtanga Yoga 300hs y Yoga Dinámico 200hs
 5. **Founder** — Bio de Kike Fay con parallax en imagen
